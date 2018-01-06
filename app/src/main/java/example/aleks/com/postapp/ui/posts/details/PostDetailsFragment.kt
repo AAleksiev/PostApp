@@ -22,7 +22,7 @@ class PostDetailsFragment : BaseFragment(), PostDetailsView {
 
     //region properties
     @Inject
-    lateinit var presenter: PostDetailsPresenter
+    lateinit var presenter: PostDetailsBasePresenter
     //endregion
 
     override fun onCreate(savedInstanceState: Bundle?) {

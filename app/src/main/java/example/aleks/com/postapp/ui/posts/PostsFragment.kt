@@ -23,7 +23,7 @@ class PostsFragment : BaseFragment(), PostsView {
 
     //region properties
     @Inject
-    lateinit var presenter: PostsPresenter
+    lateinit var presenter: PostsBasePresenter
 
     @Inject
     lateinit var postsAdapter: PostsAdapter

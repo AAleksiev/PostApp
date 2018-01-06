@@ -10,7 +10,7 @@ import javax.inject.Inject
 /**
  * Created by aleks on 06/01/2018.
  */
-class PostDetailsPresenter @Inject constructor(private val postService: PostService, private val schedulersProvider: SchedulersProvider) : PostDetailsBasePresenter<PostDetailsView> {
+class PostDetailsPresenter @Inject constructor(private val postService: PostService, private val schedulersProvider: SchedulersProvider) : PostDetailsBasePresenter {
 
     //region properties
     private var disposable: Disposable? = null

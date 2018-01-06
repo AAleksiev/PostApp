@@ -12,7 +12,7 @@ import javax.inject.Inject
 /**
  * Created by aleks on 06/01/2018.
  */
-class PostsPresenter @Inject constructor(private val postService: PostService, private val schedulersProvider: SchedulersProvider) : PostsBasePresenter<PostsView> {
+class PostsPresenter @Inject constructor(private val postService: PostService, private val schedulersProvider: SchedulersProvider) : PostsBasePresenter {
 
     //region properties
     private var postsView: PostsView? = null

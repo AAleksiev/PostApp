@@ -5,7 +5,7 @@ import example.aleks.com.postapp.mvp.BasePresenter
 /**
  * Created by aleks on 06/01/2018.
  */
-interface MainBasePresenter<in V : MainView> : BasePresenter<V> {
+interface MainBasePresenter : BasePresenter<MainView> {
 
     fun getPosts()
     fun getPostDetails(postId: Int)
