@@ -16,11 +16,11 @@ interface PostService {
     fun getPosts(): Single<List<Post>>
 
     @GET("/posts")
-    fun getPost(@Query("id") postId: Int): Single<Post>
+    fun getPost(@Query("id") postId: Int): Single<List<Post>>
 
     @GET("/comments")
     fun getPostComments(@Query("postId") postId: Int): Single<List<Comment>>
 
     @GET("/users")
-    fun getUser(@Query("id") userId: Int): Single<User>
+    fun getUser(@Query("id") userId: Int): Single<List<User>>
 }

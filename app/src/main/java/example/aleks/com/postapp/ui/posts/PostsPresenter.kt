@@ -61,7 +61,7 @@ class PostsPresenter @Inject constructor(private val postService: PostService, p
         val initialPair: Pair<List<PostViewModel>, DiffUtil.DiffResult?> = (postsView?.viewItems ?: listOf()) to null
 
         return postService.getPosts()
-                .map { posts -> posts.map { post -> PostViewModel(postId = post.id, postTitle = post.title) } }
+                .map { posts -> posts.map { post -> PostViewModel(postId = post.id, postTitle = post.title, userId = post.userId) } }
                 .toFlowable()
                 .scan(initialPair, { listDiffResultPair, currentForecastViewModel ->
 

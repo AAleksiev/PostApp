@@ -21,7 +21,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
         // Setup Dagger object graph
         DaggerActivityComponent.builder()
-                .activityModule(ActivityModule())
+                .activityModule(ActivityModule(this))
                 .applicationComponent((application as PostApp).applicationComponent)
                 .build()
     }

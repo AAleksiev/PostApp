@@ -3,6 +3,8 @@ package example.aleks.com.postapp.di.modules
 import dagger.Module
 import dagger.Provides
 import example.aleks.com.postapp.PostApp
+import example.aleks.com.postapp.avatar.AvatarProvider
+import example.aleks.com.postapp.avatar.UserAvatarProvider
 import example.aleks.com.postapp.schedulers.PostSchedulersProvider
 import example.aleks.com.postapp.schedulers.SchedulersProvider
 import javax.inject.Singleton
@@ -23,4 +25,12 @@ class ApplicationModule(private val postApp: PostApp) {
     @Provides
     @Singleton
     fun providesSchedulersProvider(schedulersProvider: PostSchedulersProvider): SchedulersProvider = schedulersProvider
+
+    @Provides
+    @Singleton
+    fun providesUserAvatarProvider() = UserAvatarProvider()
+
+    @Provides
+    @Singleton
+    fun providesAvatarProvider(userAvatarProvider: UserAvatarProvider): AvatarProvider = userAvatarProvider
 }

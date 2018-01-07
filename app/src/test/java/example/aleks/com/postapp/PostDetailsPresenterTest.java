@@ -12,9 +12,14 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import example.aleks.com.postapp.models.PostDetailsViewModel;
 import example.aleks.com.postapp.rest.PostService;
+import example.aleks.com.postapp.rest.models.Comment;
 import example.aleks.com.postapp.rest.models.Post;
+import example.aleks.com.postapp.rest.models.User;
 import example.aleks.com.postapp.schedulers.SchedulersProvider;
 import example.aleks.com.postapp.ui.posts.details.PostDetailsPresenter;
 import example.aleks.com.postapp.ui.posts.details.PostDetailsView;
@@ -59,7 +64,7 @@ public class PostDetailsPresenterTest extends BaseTest {
     }
 
     @Test
-    public void comicsShouldBeLoadedIntoView() {
+    public void postDetailsShouldBeLoadedIntoView() {
 
         final InOrder inOrder = Mockito.inOrder( postDetailsView );
 
@@ -67,9 +72,31 @@ public class PostDetailsPresenterTest extends BaseTest {
             @Override
             public Object answer( InvocationOnMock invocation ) throws Throwable {
 
-                return Single.just( new Post(1, 1, "Post Title", "Post Body"));
+                final List<Post> posts = new ArrayList<>();
+                posts.add(new Post(1, 1, "Post Title", "Post Body"));
+                return Single.just(posts);
             }
         } ).when( postService ).getPost( Mockito.anyInt() );
+
+        Mockito.doAnswer( new Answer() {
+            @Override
+            public Object answer( InvocationOnMock invocation ) throws Throwable {
+
+                final List<User> users = new ArrayList<>();
+                users.add(new User(1, "User Name"));
+                return Single.just(users);
+            }
+        } ).when( postService ).getUser( Mockito.anyInt() );
+
+        Mockito.doAnswer( new Answer() {
+            @Override
+            public Object answer( InvocationOnMock invocation ) throws Throwable {
+
+                final List<Comment> comments = new ArrayList<>();
+                comments.add(new Comment());
+                return Single.just(comments);
+            }
+        } ).when( postService ).getPostComments( Mockito.anyInt() );
 
         postDetailsView.viewAttached();
         testScheduler.triggerActions();
@@ -79,7 +106,7 @@ public class PostDetailsPresenterTest extends BaseTest {
     }
 
     @Test
-    public void comicsShouldNotBeLoadedIntoView() {
+    public void postDetailsShouldNotBeLoadedIntoView() {
 
         final InOrder inOrder = Mockito.inOrder( postDetailsView );
 

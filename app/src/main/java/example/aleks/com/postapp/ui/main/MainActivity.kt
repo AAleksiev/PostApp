@@ -66,10 +66,10 @@ class MainActivity : BaseActivity(), MainView {
         var fragment = supportFragmentManager.findFragmentByTag(PostDetailsFragment.TAG)
         if (fragment == null) {
 
-            fragment = PostDetailsFragment.newInstance()
+            fragment = PostDetailsFragment.newInstance(postId)
         }
 
-        showScreen(fragment, PostDetailsFragment.TAG, false, true)
+        showScreen(fragment, PostDetailsFragment.TAG, true, true)
     }
     //endregion
 }

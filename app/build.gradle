@@ -17,6 +17,7 @@ android {
         buildConfigField "String", "APIID", "\"b89bb537c7f6e1e6d969b34c2db45a1b\""
         buildConfigField "String", "SIGNATURE", "\"aad0dc8dca375040e110e4c79e3451329818aefa\""
         buildConfigField "String", "BASEURL", "\"https://jsonplaceholder.typicode.com\""
+        buildConfigField "String", "AVATAR", "\"https://api.adorable.io/avatars/130/{unique_id}.png\""
         buildConfigField "int", "CACHETIME", "600" // 10min
     }
     buildTypes {

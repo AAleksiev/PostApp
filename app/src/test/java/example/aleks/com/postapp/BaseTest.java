@@ -13,10 +13,6 @@ import example.aleks.com.postapp.rest.models.Post;
 
 public class BaseTest {
 
-    //region fields
-    protected static final List<Post> postList = new ArrayList<>();
-    //endregion
-
     @BeforeClass
     public static void initClassData() {
     }

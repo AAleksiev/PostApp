@@ -1,11 +1,16 @@
 package example.aleks.com.postapp.ui.posts
 
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import example.aleks.com.postapp.R
+import example.aleks.com.postapp.avatar.AvatarProvider
 import example.aleks.com.postapp.models.PostViewModel
 import example.aleks.com.postapp.ui.main.MainPresenter
 import javax.inject.Inject
@@ -13,7 +18,9 @@ import javax.inject.Inject
 /**
  * Created by aleks on 06/01/2018.
  */
-class PostsAdapter @Inject constructor(private val presenter: MainPresenter) : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
+class PostsAdapter @Inject constructor(private val appCompatActivity: AppCompatActivity,
+                                       private val presenter: MainPresenter,
+                                       private val avatarProvider: AvatarProvider) : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
 
     //region properties
     val adapterItems: MutableList<PostViewModel> = mutableListOf()
@@ -44,16 +51,22 @@ class PostsAdapter @Inject constructor(private val presenter: MainPresenter) : R
     //endregion
 
     //region ViewHolder class
-    class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         //region properties
-        private val comicTitleTextView: TextView = itemView.findViewById(R.id.postTitleTextView)
+        private val postTitleTextView: TextView = itemView.findViewById(R.id.postTitleTextView)
+        private val userAvatarImageView: ImageView = itemView.findViewById(R.id.userAvatarImageView)
         //endregion
 
         fun onBind(viewModel: PostViewModel) {
 
-            comicTitleTextView.text = viewModel.postTitle
-
+            postTitleTextView.text = viewModel.postTitle
+            Glide.with(this@PostsAdapter.appCompatActivity)
+                    .load(this@PostsAdapter.avatarProvider.getAvatarUrl(viewModel.userId))
+                    .error(Glide.with(userAvatarImageView).load(R.drawable.ic_sentiment_dissatisfied_black))
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .apply(com.bumptech.glide.request.RequestOptions.circleCropTransform())
+                    .into(userAvatarImageView)
         }
     }
     //endregion

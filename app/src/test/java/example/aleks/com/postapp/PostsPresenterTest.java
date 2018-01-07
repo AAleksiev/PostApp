@@ -13,8 +13,12 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import example.aleks.com.postapp.models.PostViewModel;
 import example.aleks.com.postapp.rest.PostService;
+import example.aleks.com.postapp.rest.models.Post;
 import example.aleks.com.postapp.schedulers.SchedulersProvider;
 import example.aleks.com.postapp.ui.posts.PostsPresenter;
 import example.aleks.com.postapp.ui.posts.PostsView;
@@ -58,7 +62,7 @@ public class PostsPresenterTest extends BaseTest {
     }
 
     @Test
-    public void comicsShouldBeLoadedIntoView() {
+    public void postsShouldBeLoadedIntoView() {
 
         final InOrder inOrder = Mockito.inOrder( postsView );
 
@@ -66,7 +70,9 @@ public class PostsPresenterTest extends BaseTest {
             @Override
             public Object answer( InvocationOnMock invocation ) throws Throwable {
 
-                return Single.just( postList );
+                final List<Post> posts = new ArrayList<>();
+                posts.add(new Post(1, 1, "Post Title", "Post Body"));
+                return Single.just(posts);
             }
         } ).when( postService ).getPosts();
 
@@ -78,7 +84,7 @@ public class PostsPresenterTest extends BaseTest {
     }
 
     @Test
-    public void comicsShouldNotBeLoadedIntoView() {
+    public void postsShouldNotBeLoadedIntoView() {
 
         final InOrder inOrder = Mockito.inOrder( postsView );
 

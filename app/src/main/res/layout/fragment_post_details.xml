@@ -1,13 +1,99 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="example.aleks.com.postapp.ui.posts.details.PostDetailsFragment">
+    android:padding="10dp">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView android:id="@+id/userAvatarImageView"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/postTitleLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:gravity="top"
+        android:text="@string/post_title"
+        android:visibility="gone"
+        style="@style/TextLabelStyle"
+        app:layout_constraintTop_toTopOf="@id/userAvatarImageView"
+        app:layout_constraintStart_toEndOf="@id/userAvatarImageView"/>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/postTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:gravity="top"
+        style="@style/PostTitleStyle"
+        app:layout_constraintTop_toBottomOf="@id/postTitleLabelTextView"
+        app:layout_constraintStart_toEndOf="@id/userAvatarImageView"/>
+
+    <TextView
+        android:id="@+id/userNameLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        style="@style/TextLabelStyle"
+        android:text="@string/user_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/postTitleTextView"/>
+
+    <TextView
+        android:id="@+id/userNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/PostUserNameStyle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/userNameLabelTextView"/>
+
+
+    <TextView
+        android:id="@+id/postBodyLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        style="@style/TextLabelStyle"
+        android:text="@string/post_body"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/userNameTextView"/>
+
+    <TextView
+        android:id="@+id/postBodyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/PostBodyStyle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/postBodyLabelTextView"/>
+
+    <TextView
+        android:id="@+id/postTotalCommentsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        style="@style/TextLabelStyle"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/postBodyTextView"/>
+
+    <ProgressBar
+        android:id="@+id/loadingIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/colorPrimary"
+        android:indeterminateTintMode="src_in"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>

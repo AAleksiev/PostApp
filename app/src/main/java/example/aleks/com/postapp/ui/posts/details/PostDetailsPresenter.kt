@@ -1,8 +1,10 @@
 package example.aleks.com.postapp.ui.posts.details
 
 import example.aleks.com.postapp.models.PostDetailsViewModel
+import example.aleks.com.postapp.models.UserViewModel
 import example.aleks.com.postapp.rest.PostService
 import example.aleks.com.postapp.schedulers.SchedulersProvider
+import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
@@ -52,8 +54,14 @@ class PostDetailsPresenter @Inject constructor(private val postService: PostServ
     //region private methods
     private fun callPostService(postId: Int): Single<PostDetailsViewModel> {
 
+        //TODO: parallel API calls
         return postService.getPost(postId)
-                .map { post -> PostDetailsViewModel(postId = post.id, postTitle = post.title, userId = post.userId, postBody = post.body) }
+                .map { posts -> posts.map { post -> PostDetailsViewModel(postId = post.id, postTitle = post.title, userId = post.userId, postBody = post.body) }.first() }
+                .flatMap { post -> postService.getUser(post.userId).map { users -> post.apply {
+                    val user = users.firstOrNull()
+                    this.user = UserViewModel(user?.id, user?.name)
+                } } }
+                .flatMap { post -> postService.getPostComments(post.postId).map { comments -> post.apply { this.commentsCount = comments.size } } }
     }
     //endregion
 
