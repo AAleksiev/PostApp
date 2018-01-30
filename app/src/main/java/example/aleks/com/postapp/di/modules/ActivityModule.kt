@@ -12,8 +12,8 @@ import example.aleks.com.postapp.ui.main.MainPresenter
 import example.aleks.com.postapp.ui.posts.PostsAdapter
 import example.aleks.com.postapp.ui.posts.PostsBasePresenter
 import example.aleks.com.postapp.ui.posts.PostsPresenter
-import example.aleks.com.postapp.ui.posts.details.PostDetailsBasePresenter
-import example.aleks.com.postapp.ui.posts.details.PostDetailsPresenter
+import example.aleks.com.postapp.ui.posts.details.mvp.PostDetailsBasePresenter
+import example.aleks.com.postapp.ui.posts.details.mvp.PostDetailsPresenter
 import android.support.v7.app.AppCompatActivity
 import example.aleks.com.postapp.di.ActivityContext
 

@@ -21,8 +21,8 @@ import example.aleks.com.postapp.rest.models.Comment;
 import example.aleks.com.postapp.rest.models.Post;
 import example.aleks.com.postapp.rest.models.User;
 import example.aleks.com.postapp.schedulers.SchedulersProvider;
-import example.aleks.com.postapp.ui.posts.details.PostDetailsPresenter;
-import example.aleks.com.postapp.ui.posts.details.PostDetailsView;
+import example.aleks.com.postapp.ui.posts.details.mvp.PostDetailsPresenter;
+import example.aleks.com.postapp.ui.posts.details.mvp.PostDetailsView;
 import io.reactivex.Single;
 import io.reactivex.schedulers.TestScheduler;
 

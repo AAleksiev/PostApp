@@ -1,4 +1,4 @@
-package example.aleks.com.postapp.ui.posts.details
+package example.aleks.com.postapp.ui.posts.details.mvp
 
 import example.aleks.com.postapp.mvp.BasePresenter
 

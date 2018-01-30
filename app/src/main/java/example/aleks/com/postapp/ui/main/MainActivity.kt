@@ -4,7 +4,7 @@ import android.os.Bundle
 import example.aleks.com.postapp.R
 import example.aleks.com.postapp.ui.base.BaseActivity
 import example.aleks.com.postapp.ui.posts.PostsFragment
-import example.aleks.com.postapp.ui.posts.details.PostDetailsFragment
+import example.aleks.com.postapp.ui.posts.details.mvp.PostDetailsFragment
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(), MainView {

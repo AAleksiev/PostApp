@@ -1,10 +1,9 @@
-package example.aleks.com.postapp.ui.posts.details
+package example.aleks.com.postapp.ui.posts.details.mvp
 
 import example.aleks.com.postapp.models.PostDetailsViewModel
 import example.aleks.com.postapp.models.UserViewModel
 import example.aleks.com.postapp.rest.PostService
 import example.aleks.com.postapp.schedulers.SchedulersProvider
-import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject

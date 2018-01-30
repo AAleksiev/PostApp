@@ -1,4 +1,4 @@
-package example.aleks.com.postapp.ui.posts.details
+package example.aleks.com.postapp.ui.posts.details.mvp
 
 
 import android.os.Bundle
@@ -16,7 +16,6 @@ import example.aleks.com.postapp.R
 import example.aleks.com.postapp.avatar.AvatarProvider
 import example.aleks.com.postapp.models.PostDetailsViewModel
 import example.aleks.com.postapp.ui.base.BaseFragment
-import example.aleks.com.postapp.ui.posts.PostsFragment
 import javax.inject.Inject
 
 
