@@ -24,11 +24,11 @@ import javax.inject.Inject
  * Use the [PostDetailsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class PostDetailsFragment : BaseFragment(), PostDetailsView {
+class PostDetailsFragment : BaseFragment(), IPostDetailsView {
 
     //region properties
     @Inject
-    lateinit var presenter: PostDetailsBasePresenter
+    lateinit var presenterI: IPostDetailsPresenter
 
     @Inject
     lateinit var avatarProvider: AvatarProvider
@@ -117,16 +117,16 @@ class PostDetailsFragment : BaseFragment(), PostDetailsView {
     }
     //endregion
 
-    //region PostsView implementation
+    //region IPostsView implementation
     override fun viewAttached() {
 
-        presenter.onAttach(this)
-        presenter.getPost(postId)
+        presenterI.onAttach(this)
+        presenterI.getPost(postId)
     }
 
     override fun viewDetached() {
 
-        presenter.onDetach()
+        presenterI.onDetach()
     }
 
     override fun showLoading() {

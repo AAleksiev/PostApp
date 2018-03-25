@@ -3,14 +3,14 @@ package example.aleks.com.postapp.ui.main
 /**
  * Created by aleks on 06/01/2018.
  */
-class MainPresenter : MainBasePresenter {
+class MainPresenter : IMainPresenter {
 
     //region fields
-    private var mainView: MainView? = null
+    private var mainView: IMainView? = null
     //endregion
 
     //region MainMvpPresenter implementation
-    override fun onAttach(view: MainView) {
+    override fun onAttach(view: IMainView) {
 
         mainView = view
     }

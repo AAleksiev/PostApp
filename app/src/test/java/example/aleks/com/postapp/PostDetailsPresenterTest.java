@@ -22,7 +22,7 @@ import example.aleks.com.postapp.rest.models.Post;
 import example.aleks.com.postapp.rest.models.User;
 import example.aleks.com.postapp.schedulers.SchedulersProvider;
 import example.aleks.com.postapp.ui.posts.details.mvp.PostDetailsPresenter;
-import example.aleks.com.postapp.ui.posts.details.mvp.PostDetailsView;
+import example.aleks.com.postapp.ui.posts.details.mvp.IPostDetailsView;
 import io.reactivex.Single;
 import io.reactivex.schedulers.TestScheduler;
 
@@ -37,7 +37,7 @@ public class PostDetailsPresenterTest extends BaseTest {
     @Mock
     SchedulersProvider testSchedulersProvider;
     @Mock
-    PostDetailsView postDetailsView;
+    IPostDetailsView postDetailsView;
     @InjectMocks
     protected PostDetailsPresenter postDetailsPresenter;
 

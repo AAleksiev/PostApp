@@ -12,44 +12,44 @@ import javax.inject.Inject
 /**
  * Created by aleks on 06/01/2018.
  */
-class PostsPresenter @Inject constructor(private val postService: PostService, private val schedulersProvider: SchedulersProvider) : PostsBasePresenter {
+class PostsPresenter @Inject constructor(private val postService: PostService, private val schedulersProvider: SchedulersProvider) : IPostsPresenter {
 
     //region properties
-    private var postsView: PostsView? = null
+    private var IPostsView: IPostsView? = null
     private var disposable: Disposable? = null
     //endregion
 
-    //region BasePresenter implementation
-    override fun onAttach(view: PostsView) {
+    //region IBasePresenter implementation
+    override fun onAttach(view: IPostsView) {
 
         dispose()
-        postsView = view
+        IPostsView = view
         getPosts()
     }
 
     override fun onDetach() {
 
         dispose()
-        postsView = null
+        IPostsView = null
     }
 
     override fun getPosts() {
 
-        if (postsView?.viewItems?.isEmpty() == true) {
+        if (IPostsView?.viewItems?.isEmpty() == true) {
 
-            postsView?.showLoading()
+            IPostsView?.showLoading()
 
             disposable = getPostsFlowable()
                     .subscribeOn(schedulersProvider.ioScheduler())
                     .observeOn(schedulersProvider.mainScheduler())
                     .subscribe({ success ->
 
-                        postsView?.hideLoading()
-                        postsView?.onPostsLoaded(success.first, success.second)
+                        IPostsView?.hideLoading()
+                        IPostsView?.onPostsLoaded(success.first, success.second)
                     }, { error ->
 
-                        postsView?.hideLoading()
-                        postsView?.onError(error.message)
+                        IPostsView?.hideLoading()
+                        IPostsView?.onError(error.message)
                     })
         }
     }
@@ -58,7 +58,7 @@ class PostsPresenter @Inject constructor(private val postService: PostService, p
     //region private methods
     private fun getPostsFlowable(): Flowable<Pair<List<PostViewModel>, DiffUtil.DiffResult?>> {
 
-        val initialPair: Pair<List<PostViewModel>, DiffUtil.DiffResult?> = (postsView?.viewItems ?: listOf()) to null
+        val initialPair: Pair<List<PostViewModel>, DiffUtil.DiffResult?> = (IPostsView?.viewItems ?: listOf()) to null
 
         return postService.getPosts()
                 .map { posts -> posts.map { post -> PostViewModel(postId = post.id, postTitle = post.title, userId = post.userId) } }

@@ -7,11 +7,11 @@ import example.aleks.com.postapp.ui.posts.PostsFragment
 import example.aleks.com.postapp.ui.posts.details.mvp.PostDetailsFragment
 import javax.inject.Inject
 
-class MainActivity : BaseActivity(), MainView {
+class MainActivity : BaseActivity(), IMainView {
 
     //region properties
     @Inject
-    lateinit var presenter: MainBasePresenter
+    lateinit var presenterI: IMainPresenter
     //endregion
 
     //region Activity methods
@@ -23,7 +23,7 @@ class MainActivity : BaseActivity(), MainView {
 
         if (savedInstanceState == null) {
 
-            presenter.getPosts()
+            presenterI.getPosts()
         }
     }
 
@@ -33,13 +33,13 @@ class MainActivity : BaseActivity(), MainView {
     }
     //endregion
 
-    //region MainView implementation
+    //region IMainView implementation
     override fun viewAttached() {
-        presenter.onAttach(this)
+        presenterI.onAttach(this)
     }
 
     override fun viewDetached() {
-        presenter.onDetach()
+        presenterI.onDetach()
     }
 
     override fun showLoading() {

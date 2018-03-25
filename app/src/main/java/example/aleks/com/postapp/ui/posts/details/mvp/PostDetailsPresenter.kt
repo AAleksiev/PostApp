@@ -11,15 +11,15 @@ import javax.inject.Inject
 /**
  * Created by aleks on 06/01/2018.
  */
-class PostDetailsPresenter @Inject constructor(private val postService: PostService, private val schedulersProvider: SchedulersProvider) : PostDetailsBasePresenter {
+class PostDetailsPresenter @Inject constructor(private val postService: PostService, private val schedulersProvider: SchedulersProvider) : IPostDetailsPresenter {
 
     //region properties
     private var disposable: Disposable? = null
-    private var postDetailsView: PostDetailsView? = null
+    private var postDetailsView: IPostDetailsView? = null
     //endregion
 
-    //region PostDetailsBasePresenter implementation
-    override fun onAttach(view: PostDetailsView) {
+    //region IPostDetailsPresenter implementation
+    override fun onAttach(view: IPostDetailsView) {
 
         dispose()
         postDetailsView = view
