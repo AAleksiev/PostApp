@@ -1,5 +1,7 @@
 package example.aleks.com.postapp.ui.main
 
+import android.arch.lifecycle.ViewModelProvider
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import example.aleks.com.postapp.R
 import example.aleks.com.postapp.ui.base.BaseActivity
